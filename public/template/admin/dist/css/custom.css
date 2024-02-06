@@ -1,0 +1,37 @@
+.error-message{
+    color: red;
+}
+.alert-message{
+    color: red;
+    font-style: italic;
+}
+.action{
+    display: flex;
+    gap: 10px;
+}
+.btn-success{
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 8px;
+}
+.btn-danger{
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 8px;
+}
+.img-product{
+    width: 80px;
+
+}
+.input-search-product{
+    border: 1px solid #9c9999;
+    border-radius: 30px;
+    padding: 5px;
+}
+.btn-search-product{
+    border: none;
+    background: seagreen;
+    color: #fff;
+    padding: 10px 50px;
+    border-radius: 30px;
+}
