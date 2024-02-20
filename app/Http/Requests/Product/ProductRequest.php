@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
             'price' => 'required|numeric|min:0',
             'price_sale' => 'nullable|numeric|lt:price', // It là kiểm tra giá giảm phải nhỏ hơn giá gốc
             'thumb' => 'required',
-            'query' => 'required'
+          
         ];
     }
 
@@ -40,7 +40,7 @@ class ProductRequest extends FormRequest
             'price.required' => 'Giá sản phẩm không bỏ trống',
             'price_sale.lt' => 'Giá giảm phải nhỏ hơn giá gốc',
             'thumb.required' => 'Không được trống',
-            'query.required' => ' Vui lòng điền đầy đủ thông tin'
+            
         ];
     }
     

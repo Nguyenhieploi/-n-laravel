@@ -47,6 +47,7 @@ class MenuService{
                 $html .= '<tr>';
                 $html .= '<td>' . $menu->id . '</td>';
                 $html .= '<td>' . $char . $menu->name . '</td>';
+                $html .= '<td><img style="width:100px" src="'.$menu->thumb.'"> </td>';
                 $html .= '<td>' . $this->active($menu->active) . '</td>';
                 $html .= '<td>' . $menu->updated_at . '</td>';
                 $html .= '<td class="action">

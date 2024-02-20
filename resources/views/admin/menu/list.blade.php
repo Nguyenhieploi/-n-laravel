@@ -7,6 +7,7 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Image</th>
             <th>Active</th>
             <th>Update</th>
             <th>&nbsp;</th>
