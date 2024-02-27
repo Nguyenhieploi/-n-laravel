@@ -5,9 +5,10 @@
             <div class="block2">
                 <div class="block2-pic hov-img0">
                     <img src="{{ $product->thumb }}" alt="{{ $product->name }}">
-                    <a href="{{ route('showmodal.product.home', ['id' => $product->id]) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                    <div class="show-modal block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 p-lr-15 trans-04 js-show-modal1" data-id="{{$product->id}}">
                         Quick View
-                    </a>
+                    </div>
+                    
                     
                 </div>
 

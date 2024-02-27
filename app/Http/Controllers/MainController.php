@@ -26,10 +26,28 @@ class MainController extends Controller
         return view('main',compact('title','sliders','menus','products'));
     }
 
-    public function show( $id){
-        $product = $this->product->showmodal($id);
+    public function quickView( $id){
+        $product = $this->product->getProduct($id);
         if($product){
-            return view('main',compact('product'));
+           return response()->json([
+            'success'  => true,
+             'data' => $product,
+           ]);
+        }else{
+            return response()->json(['success' => false, 'message' => 'Product not found'], 404);
         }
     }
+
+    public function loadProduct(Request $request){
+        $page = $request->input('page', 2);
+        $products = $this->product->loadMore($page);
+        if($products->isEmpty()){
+            return response()->json(['html' => '']);
+        }
+
+         // Render sản phẩm thành HTML và trả về
+        $html = view('main', compact('products'))->render();
+        return response()->json(['html' => $html]);
+    }
+
 }

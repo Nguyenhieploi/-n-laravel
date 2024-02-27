@@ -78,5 +78,11 @@ Route::middleware(['auth.admin'])->group(function(){
 });
 
 Route::Get('/',[HomeController::class,'index'])->name('home');
+
 Route::GET('show/{id}',[HomeController::class,'show'])->name('showmodal.product.home');
+
+// Quick view 
+Route::GET('quickview/{id}',[HomeController::class,'quickView'])->name('quickview');
+// Load more
+Route::POST('/services/load-product',[HomeController::class,'loadProduct'])->name('load.product');
 

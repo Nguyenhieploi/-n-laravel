@@ -97,13 +97,24 @@ class ProductService{
             return false; 
         }
     }
-
     public function showHome(){
-        return Product::select('id','name','price','price_sale','active','thumb')->where('active',1)->orderByDesc('id')->get();
+        return Product::select('id','name','price','price_sale','active','thumb')->where('active',1)->orderByDesc('id')->limit(4)->get();
     }
 
     public function showmodal($id){
         return Product::find($id);
+    }
+
+    public function loadMore($page){
+        $limit = 4; // Số lượng sản phẩm bạn muốn hiển thị mỗi lần
+
+        $offset = ($page - 1) * $limit;
+    
+        return Product::select('id','name','price','price_sale','active','thumb')
+            ->where('active',1)
+            ->orderByDesc('id')
+            ->skip($offset)->take($limit)
+            ->get();
     }
     
 
