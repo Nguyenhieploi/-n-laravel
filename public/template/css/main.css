@@ -368,8 +368,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 .main-menu > li > a {
   font-family: Poppins-Medium;
-  font-size: 14px;
-  color: #fff;
+  font-size: 18px;
+  color: #7bcb0a;
   padding: 5px 0px;
   transition: all 0.4s;
   -webkit-transition: all 0.4s;
@@ -638,7 +638,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*---------------------------------------------*/
 .main-menu > li.active-menu > a {
-  color: #ffd915;
+  color: #096630;
 }
 
 

@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="menu">Ảnh</label>
-                <input type="file" name="" class="form-control" id="upload">
+                <input type="file" name="file" class="form-control" id="upload">
                 @error('thumb')
                     <div class="alert-message">{{ $message }}</div>
                 @enderror

@@ -17,7 +17,9 @@
                 <a href="#" class="d-block">Alexander Pierce</a>
             </div>
         </div>
-
+        <div class="visit">
+            <a href="{{ url('/') }}" target="_blank">Visit Website</a>
+        </div>
         <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">

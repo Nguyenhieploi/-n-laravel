@@ -6,8 +6,6 @@ $.ajaxSetup({
 
 
 
-
-
 /*Upload File */
 $('#upload').change(function () {
     console.log(12312);
@@ -30,6 +28,7 @@ $('#upload').change(function () {
             } else {
                 alert('Upload File Lỗi');
             }
+            
         }
     });
 });
