@@ -104,5 +104,7 @@ class ProductController extends Controller
             return redirect()->route('list.product')->with('error', 'Không tìm thấy sản phẩm hoặc có lỗi xảy ra');
         }
     }
+    
+    
 
 }

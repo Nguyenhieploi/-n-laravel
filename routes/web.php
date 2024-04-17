@@ -9,7 +9,9 @@ use App\Http\Middleware\LoginMiddleware;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\MainController as HomeController;
-
+use App\Http\Controllers\MenuHeaderController;
+use App\Http\Controllers\ProductController as DetailProductController;
+use App\Http\Controllers\CartController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +22,7 @@ use App\Http\Controllers\MainController as HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 
 Route::get('admin/users/login',[LoginController::class,'index'])->name('login')->middleware(LoginMiddleware::class);
@@ -84,5 +87,19 @@ Route::GET('show/{id}',[HomeController::class,'show'])->name('showmodal.product.
 // Quick view 
 Route::GET('quickview/{id}',[HomeController::class,'quickView'])->name('quickview');
 // Load more
-Route::POST('/services/load-product',[HomeController::class,'loadProduct'])->name('load.product');
+Route::POST('services/load-product',[HomeController::class,'loadProduct'])->name('load.product');
 
+//Danh mục sản phẩm
+Route::GET('{slug}',[MenuHeaderController::class,'index'])->name('category.product');
+
+// Chi tiết sản phẩm
+Route::GET('san-pham/{id}',[DetailProductController::class,'index'])->name('detail.product');
+
+// Thêm vào giỏ hàng
+Route::POST('add-cart',[CartController::class,'index'])->name('add.cart');
+
+// Danh sách sản phẩm trong giỏ hàng
+Route::GET('list/cart',[CartController::class,'show'])->name('show.cart');
+
+// Update giỏ hàng
+Route::POST('/update-cart',[CartController::class,'update'])->name('update.cart');

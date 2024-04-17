@@ -14,10 +14,10 @@
 
                 <div class="block2-txt flex-w flex-t p-t-14">
                     <div class="block2-txt-child1 flex-col-l ">
-                        <a href="/san-pham/{{ $product->id }}-{{ Str::slug($product->name, '-') }}"
-                           class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                            {{ $product->name }}
-                        </a>
+                    <a href="{{ route('detail.product', ['id' => $product->id]) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        {{ $product->name }}
+                    </a>
+
 
                         <span class="stext-105 cl3">
                             @if($product->price_sale)

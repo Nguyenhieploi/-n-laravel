@@ -21,4 +21,11 @@ class Menu extends Model
         'active',
         'thumb'
     ];
+
+    // Liên kết với bảng product, lấy tất cả sp trong menu - 1 nhiều
+    public function products(){
+        return $this->hasMany(Product::class,'menu_id','id');
+    }
+
+
 }

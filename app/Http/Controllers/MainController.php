@@ -23,7 +23,7 @@ class MainController extends Controller
         $sliders = $this->slider->showHome();
         $menus = $this->menu->showHome();
         $products = $this->product->showHome();
-        return view('main',compact('title','sliders','menus','products'));
+        return view('home',compact('title','sliders','menus','products'));
     }
 
     public function quickView( $id){
@@ -38,16 +38,7 @@ class MainController extends Controller
         }
     }
 
-    public function loadProduct(Request $request){
-        $page = $request->input('page', 2);
-        $products = $this->product->loadMore($page);
-        if($products->isEmpty()){
-            return response()->json(['html' => '']);
-        }
-
-         // Render sản phẩm thành HTML và trả về
-        $html = view('main', compact('products'))->render();
-        return response()->json(['html' => $html]);
-    }
+   
+    
 
 }

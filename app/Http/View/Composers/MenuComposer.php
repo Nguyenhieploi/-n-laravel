@@ -34,7 +34,8 @@ class MenuComposer
                 $html .= '<li>';
                 // Thêm thẻ <a> vào tên menu. Giả sử mỗi menu có một URL riêng được lưu trong cột 'url'.
                 // Nếu bạn không có cột 'url', bạn có thể thay thế '#' hoặc một giá trị cụ thể khác.
-                $html .= '<a href="' . (isset($menu->slug) ? $menu->slug : '#') . '">' . $char . $menu->name . '</a>';
+                $html .= '<a href="' . (isset($menu->slug) ? route('category.product', ['slug' => $menu->slug]) : '#') . '">' . $char . $menu->name . '</a>';
+
                 // Xử lý mục con
                 $childHtml = $this->buildMenu($menus, $menu->id, $char);
                 if (!empty($childHtml)) {

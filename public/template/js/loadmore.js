@@ -8,7 +8,7 @@ function loadMore() {
     let page = parseInt($('#page').val()) + 1;
     $.ajax({
         type: 'POST',
-        url: '/services/load-product',
+        url: 'services/load-product',
         data: { page: page },
         success: function(result) {         
             if (result.html !== '') {

@@ -111,4 +111,22 @@ class MenuService{
         return Menu::select('name','id','slug','thumb')->where('parent_id',0)->orderByDesc('id')->get();
     }
     
+    public function GetId($slug){
+        return Menu::where('slug',$slug)->where('active',1)->firstOrFail();
+    }
+
+
+    public function getProduct($menu, $request){
+        
+        // trỏ đến class trong file Model Menu
+        $query = $menu->products()->select('id','name','price','price_sale','thumb')
+                ->where('active',1);
+       
+        if($request->input('price')){
+            $query->orderBy('price',$request->input('price'));
+        }
+        return $query->orderByDesc('id')->paginate(8)->withQueryString();
+
+        
+    }
 }
