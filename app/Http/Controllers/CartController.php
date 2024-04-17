@@ -29,6 +29,7 @@ class CartController extends Controller
 
     public function show(){
         $products = $this->cartService->getProduct();
+       
         $carts = Session::get('carts');
         $title = 'Giỏ hàng';
        return view('carts.list',compact('title','products','carts'));
@@ -39,5 +40,14 @@ class CartController extends Controller
       
         $this->cartService->update($request);
         return back()->with('success','Cập nhật thành công');
+    }
+
+    public function delete($id){
+       $this->cartService->remove($id);
+       return back()->with('success','Xoá sản phẩm thành công');
+    }
+
+    public function addCart(Request $request){
+        $result = $this->cartService->addCart($request);
     }
 }

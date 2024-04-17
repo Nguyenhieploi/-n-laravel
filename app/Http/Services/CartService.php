@@ -22,10 +22,9 @@ class CartService
             ]);
             return true;
         }
-
+        
         if (array_key_exists($product_id, $carts)) {
             $newQuantity = $carts[$product_id] + $qty;
-    
             // Nếu sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
             $carts[$product_id] = $newQuantity;
         } else {
@@ -52,5 +51,17 @@ class CartService
     public function update($request){
         session()->put('carts', $request->input('num-product'));
         return true;
+    }
+
+    public function remove($id){
+        $carts = Session::get('carts');
+        unset($carts[$id]);
+
+        session()->put('carts', $carts);
+        return true;
+    }
+
+    public function addCart($request){
+        dd($request);
     }
 }

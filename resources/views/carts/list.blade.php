@@ -6,12 +6,19 @@
     @csrf
     <div class="container">
         <h2 class="mb-3">{{$title}}</h2>
+        @if (count($products) != 0)
         <div class="row">
             <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
                 <div class="m-l-25 m-r--38 m-lr-0-xl">
                     <div class="wrap-table-shopping-cart">
-                        @if (count($products) != 0)
+                        
                             @php $total = 0; @endphp
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }} 
+                                </div>
+                            @endif
                             <table class="table-shopping-cart">
                                 <tr class="table_head">
                                     <th class="column-1">Product</th>
@@ -19,6 +26,7 @@
                                     <th class="column-3">Price</th>
                                     <th class="column-4">Quantity</th>
                                     <th class="column-5">Total</th>
+                                    <th class="column-6">Action</th>
                                 </tr>
 
                                 @foreach($products as $product)
@@ -50,13 +58,15 @@
                                         </div>
                                     </td>
                                     <td class="column-5">{{ number_format($priceEnd, 0, '.', ',') }}</td>
+                                    <td>
+                                        <a href="{{route('delete.cart',['id' => $product->id])}}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#df1111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></a>
+                                    </td>
                                 </tr>
+
                                 @endforeach
                                 
                             </table>
-                        @else
-                            <div class="text-center"><h2>GIỎ HÀNG TRỐNG</h2></div>
-                        @endif
+                       
                     </div>
 
                     <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
@@ -69,9 +79,7 @@
                         </div>
 
                         <input type="submit" value="Update Cart" formaction="{{route('update.cart')}}" class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-                            
-
-                      
+                        
                     </div>
                 </div>
             </div>
@@ -94,17 +102,57 @@
 
                         <div class="size-209 p-t-1">
                             <span class="mtext-110 cl14">
-                                {{ number_format($total, 0, '.', ',') }}
+                                @if($total)
+                                 {{ number_format($total, 0, '.', ',') }}
+                                @endif
+                               
                             </span>
                         </div>
                     </div>
 
+                    <div class="flex-w flex-t bor12 p-t-15 p-b-30">
+
+                        <div class="size-100 p-r-18 p-r-0-sm w-full-ssm">
+
+                            <div class="p-t-15">
+                                <span class="stext-112 cl8">
+                                    Thông Tin Khách Hàng
+                                </span>
+
+                                <div class="bor8 bg0 m-b-12">
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="name" placeholder="Tên khách Hàng" required>
+                                </div>
+
+                                <div class="bor8 bg0 m-b-12">
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="phone" placeholder="Số Điện Thoại" required>
+                                </div>
+
+                                <div class="bor8 bg0 m-b-12">
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="address" placeholder="Địa Chỉ Giao Hàng">
+                                </div>
+
+                                <div class="bor8 bg0 m-b-12">
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="email" placeholder="Email Liên Hệ">
+                                </div>
+
+                                <div class="bor8 bg0 m-b-12">
+                                    <textarea class="cl8 plh3 size-111 p-lr-15" name="content"></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                     <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-                        Proceed to Checkout
+                        ĐẶT HÀNG
                     </button>
                 </div>
             </div>
+           
         </div>
+        @else
+        <div class="text-center"><h2>GIỎ HÀNG TRỐNG</h2></div>
+        @endif
     </div>
 </form>
 @endsection

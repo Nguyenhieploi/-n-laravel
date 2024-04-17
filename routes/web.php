@@ -103,3 +103,9 @@ Route::GET('list/cart',[CartController::class,'show'])->name('show.cart');
 
 // Update giỏ hàng
 Route::POST('/update-cart',[CartController::class,'update'])->name('update.cart');
+
+// Xoá sản phẩm ra khỏi giỏ hàng
+Route::GET('/delete-cart/{id}',[CartController::class,'delete'])->name('delete.cart');
+
+// Lấy thông tin khách hàng khi mua hàng 
+Route::POST('list/cart',[CartController::class,'addCart'])->name('add.checkout');
