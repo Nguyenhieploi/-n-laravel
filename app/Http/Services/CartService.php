@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Services;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Arr; 
+use App\Models\Cart;
+use App\Models\Customer;
 use App\Models\Product;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Session;
+
 class CartService
 {
     public function addToCart($product_id, $qty)
@@ -61,7 +63,46 @@ class CartService
         return true;
     }
 
-    public function addCart($request){
-        dd($request);
+    public function addCart($request)
+    {
+        
+            $carts = $request->session()->get('carts');
+          
+            if (is_null($carts)) {
+                return false;
+            }
+
+            $customerData = $request->except(['_token']);
+            $customer = Customer::create($customerData);
+       
+            $infoProduct = $this->infoProductCart($carts, $customer->id);
+       
+            $request->session()->forget('carts');
+
+            return true;
+      
+    }
+
+    protected function infoProductCart($carts, $customer_id)
+    {
+
+        $productId = array_keys($carts);
+
+        $products = Product::select('id', 'name', 'price', 'price_sale', 'thumb')
+            ->where('active', 1)
+            ->whereIn('id', $productId)
+            ->get();
+
+        $data = [];
+      
+        foreach ($products as $product) {
+            $data[] = [
+                'customer_id' => $customer_id,
+                'product_id' => $product->id,
+                'qty'   => $carts[$product->id],
+                'price' => $product->price_sale != 0 ? $product->price_sale : $product->price
+            ];
+        }
+        Cart::insert($data);
     }
 }

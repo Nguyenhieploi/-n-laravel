@@ -6,6 +6,7 @@
     @csrf
     <div class="container">
         <h2 class="mb-3">{{$title}}</h2>
+        @include('admin.alert')
         @if (count($products) != 0)
         <div class="row">
             <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -14,11 +15,7 @@
                         
                             @php $total = 0; @endphp
 
-                            @if(session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }} 
-                                </div>
-                            @endif
+                           
                             <table class="table-shopping-cart">
                                 <tr class="table_head">
                                     <th class="column-1">Product</th>
@@ -120,11 +117,11 @@
                                 </span>
 
                                 <div class="bor8 bg0 m-b-12">
-                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="name" placeholder="Tên khách Hàng" required>
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="name" placeholder="Tên khách Hàng" >
                                 </div>
 
                                 <div class="bor8 bg0 m-b-12">
-                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="phone" placeholder="Số Điện Thoại" required>
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="phone" placeholder="Số Điện Thoại" >
                                 </div>
 
                                 <div class="bor8 bg0 m-b-12">
@@ -143,9 +140,9 @@
                         </div>
                     </div>
 
-                    <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-                        ĐẶT HÀNG
-                    </button>
+                    <input type="submit" value="ĐẶT HÀNG" formaction="{{route('add.checkout')}}" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                       
+                 
                 </div>
             </div>
            

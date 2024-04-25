@@ -49,5 +49,10 @@ class CartController extends Controller
 
     public function addCart(Request $request){
         $result = $this->cartService->addCart($request);
+        if ($result) {
+            return back()->with('success', 'Đặt hàng thành công');
+        } else {
+            return back()->with('error', 'Đã có lỗi xảy ra khi đặt hàng');
+        }
     }
 }

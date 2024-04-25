@@ -29,10 +29,20 @@
                     <div class="icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                         <i class="zmdi zmdi-search"></i>
                     </div>
-
-                    <div class="icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="{{count(\Illuminate\Support\Facades\Session::get('carts'))}}">
-                        <a href="{{route('show.cart')}}"> <i class="zmdi zmdi-shopping-cart"></i></a>
-                    </div>
+                    @php
+                    $count = \Illuminate\Support\Facades\Session::get('carts');
+                    if($count > 0) {
+                        $cartCount = count($count); // Đảm bảo chỉ đếm khi $count là một mảng hợp lệ
+                    } else {
+                        $cartCount = 0; // Nếu $count không hợp lệ, gán $cartCount là 0
+                    }
+                @endphp
+                
+                <div class="icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="{{ $cartCount }}">
+                    <a href="{{ route('show.cart') }}"> <i class="zmdi zmdi-shopping-cart"></i></a>
+                </div>
+                
+                   
 
                 </div>
             </nav>
