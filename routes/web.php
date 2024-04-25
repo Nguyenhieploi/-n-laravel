@@ -12,6 +12,7 @@ use App\Http\Controllers\MainController as HomeController;
 use App\Http\Controllers\MenuHeaderController;
 use App\Http\Controllers\ProductController as DetailProductController;
 use App\Http\Controllers\CartController; 
+use App\Http\Controllers\Admin\CartController as CartControllerAdmin; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,47 +37,50 @@ Route::middleware(['auth.admin'])->group(function(){
     // admin
     Route::prefix('admin')->group(function () {
         Route::GET('/',[MainController::class,'index'])->name('admin');
-    });
+    
 
 
-    // Menu 
-    Route::prefix('menus')->group(function () {
-        Route::GET('add',[MenuController::class,'create'])->name('create');
-        Route::POST('add',[MenuController::class,'store'])->name('store');
-        Route::GET('list',[MenuController::class,'list'])->name('list.menu');
-        Route::GET('{id}/edit',[MenuController::class,'edit'])->name('edit.menu');
-        Route::PUT('{id}',[MenuController::class,'update'])->name('update.menu');
-        Route::DELETE('delete/{id}',[MenuController::class,'destroy'])->name('destroy.menu');
-    });
+        // Menu 
+        Route::prefix('menus')->group(function () {
+            Route::GET('add',[MenuController::class,'create'])->name('create');
+            Route::POST('add',[MenuController::class,'store'])->name('store');
+            Route::GET('list',[MenuController::class,'list'])->name('list.menu');
+            Route::GET('{id}/edit',[MenuController::class,'edit'])->name('edit.menu');
+            Route::PUT('{id}',[MenuController::class,'update'])->name('update.menu');
+            Route::DELETE('delete/{id}',[MenuController::class,'destroy'])->name('destroy.menu');
+        });
 
-   
+    
 
-    // Sản phẩm
-    Route::prefix('products')->group(function(){
-        Route::GET('add',[ProductController::class,'create'])->name('create.product');
-        Route::POST('add',[ProductController::class,'store'])->name('store.product');
-        Route::GET('list',[ProductController::class,'index'])->name('list.product');
-        Route::GET('{id}/edit',[ProductController::class,'show'])->name('edit.product');
-        Route::PUT('{id}',[ProductController::class,'update'])->name('update.product');
-        Route::DELETE('delete/{id}',[ProductController::class,'destroy'])->name('destroy.product');
+        // Sản phẩm
+        Route::prefix('products')->group(function(){
+            Route::GET('add',[ProductController::class,'create'])->name('create.product');
+            Route::POST('add',[ProductController::class,'store'])->name('store.product');
+            Route::GET('list',[ProductController::class,'index'])->name('list.product');
+            Route::GET('{id}/edit',[ProductController::class,'show'])->name('edit.product');
+            Route::PUT('{id}',[ProductController::class,'update'])->name('update.product');
+            Route::DELETE('delete/{id}',[ProductController::class,'destroy'])->name('destroy.product');
 
-         // Search
-        Route::GET('search',[ProductController::class,'search'])->name('search.product');
-    });
+            // Search
+            Route::GET('search',[ProductController::class,'search'])->name('search.product');
+        });
 
-    //Upload
-    Route::POST('upload/services',[UploadController::class,'store'])->name('upload');
+        //Upload
+        Route::POST('upload/services',[UploadController::class,'store'])->name('upload');
 
-    // Slider
-    Route::prefix('sliders')->group(function(){
-        Route::GET('add',[SliderController::class,'create'])->name('create.slider');
-        Route::POST('add',[SliderController::class,'store'])->name('store.slider');
-        Route::GET('list',[SliderController::class,'index'])->name('list.slider');
-        Route::GET('{id}/edit',[SliderController::class,'show'])->name('edit.slider');
-        Route::PUT('{id}',[SliderController::class,'update'])->name('update.slider');
-        Route::DELETE('delete/{id}',[SliderController::class,'destroy'])->name('destroy.slider');
-           // Search
-        Route::GET('search',[SliderController::class,'search'])->name('search.slider');
+        // Slider
+        Route::prefix('sliders')->group(function(){
+            Route::GET('add',[SliderController::class,'create'])->name('create.slider');
+            Route::POST('add',[SliderController::class,'store'])->name('store.slider');
+            Route::GET('list',[SliderController::class,'index'])->name('list.slider');
+            Route::GET('{id}/edit',[SliderController::class,'show'])->name('edit.slider');
+            Route::PUT('{id}',[SliderController::class,'update'])->name('update.slider');
+            Route::DELETE('delete/{id}',[SliderController::class,'destroy'])->name('destroy.slider');
+            // Search
+            Route::GET('search',[SliderController::class,'search'])->name('search.slider');
+        });
+
+        Route::GET('customers',[CartControllerAdmin::class,'index'])->name('customer');
     });
 });
 
@@ -109,3 +113,4 @@ Route::GET('/delete-cart/{id}',[CartController::class,'delete'])->name('delete.c
 
 // Lấy thông tin khách hàng khi mua hàng 
 Route::POST('list/cart',[CartController::class,'addCart'])->name('add.checkout');
+

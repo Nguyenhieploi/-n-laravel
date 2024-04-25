@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Product;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
+use App\Jobs\SendMail;
 
 class CartService
 {
@@ -76,7 +77,10 @@ class CartService
             $customer = Customer::create($customerData);
        
             $infoProduct = $this->infoProductCart($carts, $customer->id);
-       
+
+            #Queue 
+            SendMail::dispatch($request->input('email'))->delay(now()->addSeconds(2));
+
             $request->session()->forget('carts');
 
             return true;
@@ -104,5 +108,9 @@ class CartService
             ];
         }
         Cart::insert($data);
+    }
+
+    public function getCustomer(){
+        return Customer::orderByDesc('id')->paginate(15);
     }
 }
