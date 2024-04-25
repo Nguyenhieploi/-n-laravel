@@ -80,7 +80,9 @@ Route::middleware(['auth.admin'])->group(function(){
             Route::GET('search',[SliderController::class,'search'])->name('search.slider');
         });
 
+        // Cart
         Route::GET('customers',[CartControllerAdmin::class,'index'])->name('customer');
+        Route::GET('customers/view/{customer}',[CartControllerAdmin::class,'show'])->name('get.product.customer');
     });
 });
 
