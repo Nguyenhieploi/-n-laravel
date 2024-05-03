@@ -14,7 +14,6 @@ class ProductController extends Controller
     }
 
     public function index($id){
-        
         $product = $this->productService->show($id);
         $title = $product->name;
         $products = $this->productService->more($id);

@@ -5,7 +5,6 @@ $.ajaxSetup({
 });
 
 
-
 /*Upload File */
 $('#upload').change(function () {
     console.log(12312);
@@ -18,7 +17,7 @@ $('#upload').change(function () {
         type: 'POST',
         dataType: 'JSON',
         data: form,
-        url: '/upload/services',
+        url: '/admin/upload/services',
         success: function (results) {
             if (results.error === false) {
                 $('#image_show').html('<a href="' + results.url + '" target="_blank">' +
@@ -34,4 +33,4 @@ $('#upload').change(function () {
 });
 
 
-// Quick view
+

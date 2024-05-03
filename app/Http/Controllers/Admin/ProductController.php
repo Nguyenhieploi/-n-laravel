@@ -46,6 +46,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+    
         $this->productService->insert($request);
         return redirect()->route('create.product')->with('success','Thêm mới thành công');
     }

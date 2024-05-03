@@ -103,7 +103,7 @@
         </div>
 
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Tạo sản phẩm</button>
+            {{-- <button type="submit" class="btn btn-primary">Tạo sản phẩm</button> --}}
         </div>
         @csrf
     </form>
